@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Container } from '@mui/material';
-import YearsCard from '../components/TeacherComponents/YearsSection'; 
-import { yearsData } from '../data/YearsCard'; 
+import YearsCard from '../../../components/TeacherComponents/YearsSection'; 
+import { yearsData } from '../../../data/YearsCard'; 
 
 export default function Home() {
   return (
