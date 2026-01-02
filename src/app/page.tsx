@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Image from "next/image";
 
 export default function Home() {
@@ -61,5 +62,27 @@ export default function Home() {
         </div>
       </main>
     </div>
+=======
+"use client";
+import PrimaryButton from "@/components/shared/PrimaryButton";
+import Button2 from "@/components/shared/Button2";
+import { BUTTON_TEXTS, BUTTON } from "@/data/buttons";
+import Filter from "@/components/shared/FilterComponent";
+
+export default function Home() {
+  return (
+    <main>
+      <PrimaryButton
+        text={BUTTON_TEXTS.addStudent}
+        onClick={() => console.log("Clicked!")}
+      />
+
+      <Button2
+        text={BUTTON.addStudent}
+        onClick={() => console.log("Clicked!")}
+      />
+      <Filter/>
+    </main>
+>>>>>>> da2866334ef6b50889af4a13d207280958fc7b5a
   );
 }
