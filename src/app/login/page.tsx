@@ -10,11 +10,9 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-// ===== types & data =====
 import { LoginPayload } from "@/types/login";
 import { initialLoginData } from "@/data/login";
 
-// ===== images =====
 const images = [
     "/Images/login/1.jpg",
     "/Images/login/2.jpg",
@@ -23,6 +21,9 @@ const images = [
     "/Images/login/5.jpg",
     "/Images/login/6.jpg",
     "/Images/login/7.jpg",
+    "/Images/login/8.jpg",
+    "/Images/login/9.jpg",
+    "/Images/login/10.jpg",
 ];
 
 const logos = [
@@ -35,6 +36,7 @@ const LoginPage = () => {
 
     // ===== state =====
     const [currentImage, setCurrentImage] = useState(0);
+    
     const [loginData, setLoginData] =
         useState<LoginPayload>(initialLoginData);
     const [loading, setLoading] = useState(false);
@@ -43,10 +45,11 @@ const LoginPage = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentImage((prev) => (prev + 1) % images.length);
-        }, 4000);
+        }, 9000);
 
         return () => clearInterval(interval);
     }, []);
+
 
     // ===== handlers =====
     const handleChange =
@@ -60,9 +63,7 @@ const LoginPage = () => {
 
     const handleLogin = async () => {
         setLoading(true);
-
         try {
-            
             console.log("Login Payload:", loginData);
         } catch (error) {
             console.error(error);
@@ -70,6 +71,8 @@ const LoginPage = () => {
             setLoading(false);
         }
     };
+
+
 
     return (
         <Box sx={{ minHeight: "100vh", display: "flex" }}>
@@ -88,8 +91,10 @@ const LoginPage = () => {
                         sx={{
                             display: "flex",
                             justifyContent: "center",
-                            gap: 2,
+                            gap: 3,
                             mb: 3,
+                            transition: "all 0.6s ease",
+                            
                         }}
                     >
                         {logos.map((src, index) => (
@@ -102,11 +107,12 @@ const LoginPage = () => {
                                     width: 150,
                                     height: 150,
                                     objectFit: "contain",
-                                    borderRadius: "16px",
+                                    transition: "transform 0.6s ease",
                                 }}
                             />
                         ))}
                     </Box>
+
 
                     {/* Login Card */}
                     <Card
@@ -114,6 +120,17 @@ const LoginPage = () => {
                             p: 4,
                             borderRadius: "20px",
                             boxShadow: "0 10px 30px rgba(0,0,0,0.12)",
+                            animation: "slideFade 0.8s ease",
+                            "@keyframes slideFade": {
+                                from: {
+                                    opacity: 0,
+                                    transform: "translateY(20px)",
+                                },
+                                to: {
+                                    opacity: 1,
+                                    transform: "translateY(0)",
+                                },
+                            },
                         }}
                     >
                         <Typography variant="h2" mb={1}>
@@ -182,8 +199,9 @@ const LoginPage = () => {
             <Box
                 sx={{
                     display: { xs: "none", md: "block" },
-                    width: "60%",
+                    width: "90%",
                     position: "relative",
+                    overflow: "hidden",
                 }}
             >
                 <Box
@@ -193,17 +211,69 @@ const LoginPage = () => {
                         backgroundImage: `url(${images[currentImage]})`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
-                        transition: "background-image 0.6s ease-in-out",
+                        transition: "background-image 1s ease-in-out",
                     }}
                 >
+                    {/* Overlay */}
                     <Box
                         sx={{
                             position: "absolute",
                             inset: 0,
                             background:
-                                "linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6))",
+                                "linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.9))",
                         }}
                     />
+
+                    {/* Animated Text */}
+                    <Box
+                        key={currentImage}
+                        sx={{
+                            position: "absolute",
+                            bottom: 60,
+                            left: 60,
+                            color: "#fff",
+                            maxWidth: 420,
+                            animation: "fadeUp 0.8s ease",
+                            "@keyframes fadeUp": {
+                                from: {
+                                    opacity: 0,
+                                    transform: "translateY(20px)",
+                                },
+                                to: {
+                                    opacity: 1,
+                                    transform: "translateY(0)",
+                                },
+                            },
+                        }}
+                    >
+                        <Typography variant="h2" mb={2} fontWeight={700}>
+                            Welcome to EVA Pharma
+                        </Typography>
+
+                        <Typography variant="body1" sx={{ opacity: 0.85 }}>
+                            Secure access to administrative tools, student records,
+                            and internal systems.
+                        </Typography>
+
+                        {/* Indicators */}
+                        <Box sx={{ display: "flex", gap: 1, mt: 3 }}>
+                            {images.map((_, index) => (
+                                <Box
+                                    key={index}
+                                    sx={{
+                                        width: currentImage === index ? 24 : 8,
+                                        height: 8,
+                                        borderRadius: 4,
+                                        backgroundColor:
+                                            currentImage === index
+                                                ? "#fff"
+                                                : "rgba(255,255,255,0.4)",
+                                        transition: "all 0.3s ease",
+                                    }}
+                                />
+                            ))}
+                        </Box>
+                    </Box>
                 </Box>
             </Box>
         </Box>
