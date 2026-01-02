@@ -42,7 +42,7 @@ export default function StudentDashboard() {
 
         <DashboardHeader
           name="Ahmed Mohamed"
-          year="Year - 1"
+          year=""
           subtitle="Select a category to view your grades"
         />
 
