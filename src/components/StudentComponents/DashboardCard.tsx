@@ -1,15 +1,17 @@
-import React from "react";
+"use client";
+
+import React, { ReactNode } from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 
 interface DashboardCardProps {
-  icon: string;
+  image: ReactNode; // دلوقتي ممكن تحطي JSX أو صورة مباشرة
   title: string;
   description: string;
   onClick: () => void;
 }
 
 function DashboardCard({
-  icon,
+  image,
   title,
   description,
   onClick,
@@ -54,16 +56,14 @@ function DashboardCard({
           alignItems: "center",
           justifyContent: "center",
           mb: 2.5,
-          fontSize: "28px",
         }}
       >
-        {icon}
+        {image} 
       </Box>
 
       <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
         <Typography
           variant="h5"
-          component="div"
           sx={{
             fontWeight: 600,
             color: "#1a1a1a",
@@ -73,6 +73,7 @@ function DashboardCard({
         >
           {title}
         </Typography>
+
         <Typography
           variant="body2"
           sx={{
@@ -88,56 +89,4 @@ function DashboardCard({
   );
 }
 
-export default function StudentDashboard() {
-  const handleCardClick = (route: string) => {
-    // Example: navigate(route);
-    console.log(`Navigating to: ${route}`);
-  };
-
-  return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        backgroundImage: "url('/Images/image.jpeg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        p: 4,
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          gap: 4,
-          justifyContent: "center",
-          alignItems: "stretch",
-          flexWrap: "nowrap",
-        }}
-      >
-        <DashboardCard
-          icon="📊"
-          title="Quarter Grades"
-          description="View your quarterly performance across all subjects"
-          onClick={() => handleCardClick('/quarter-grades')}
-        />
-
-        <DashboardCard
-          icon="📋"
-          title="Final Grades"
-          description="View your semester final exam grades"
-          onClick={() => handleCardClick('/final-grades')}
-        />
-
-        <DashboardCard
-          icon="🎓"
-          title="Competencies Grades"
-          description="View your specialization competency grades"
-          onClick={() => handleCardClick('/competencies-grades')}
-        />
-      </Box>
-    </Box>
-  );
-}
+export default DashboardCard;

@@ -1,18 +1,25 @@
-"use client";
-import { ThemeProvider } from "@mui/material";
-import { theme } from "@/src/styles/theme";
+import SharedNavbar from "@/src/components/SharedNavbar";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const queryClient = new QueryClient();
-
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body>
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
+      <body style={{ margin: 0, padding: 0 }}>
+
+        {/* Navbar */}
+        <SharedNavbar
+          title="School Grading System"
+          subtitle="Student Portal"
+          userName="Myriam"
+          userRole="Student"
+        />
+
+        {/* Page Content */}
+        {children}
+
       </body>
     </html>
   );
