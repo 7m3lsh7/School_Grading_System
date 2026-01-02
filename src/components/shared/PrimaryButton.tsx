@@ -28,7 +28,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
           boxShadow: "none",
         },
         "& .MuiButton-startIcon .MuiSvgIcon-root": {
-          fontSize: "1.2em" 
+          fontSize: "1rem" 
         },
       }}
     >
