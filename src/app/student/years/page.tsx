@@ -3,8 +3,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Box, Modal, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import DashboardHeader from "@/src/components/StudentComponents/DashboardHeaderProps";
-import CategoryCard from "@/src/components/StudentComponents/CategoryCard"; // ✅ الشير كمبوننت
+import DashboardHeader from "@/components/StudentComponents/DashboardHeaderProps";
+import CategoryCard from "@/components/StudentComponents/CategoryCard"; // ✅ الشير كمبوننت
 
 export default function StudentDashboard() {
   const categories = [
