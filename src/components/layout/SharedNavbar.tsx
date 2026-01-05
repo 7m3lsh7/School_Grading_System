@@ -45,7 +45,7 @@ export default function SharedNavbar() {
                 position="sticky"
                 elevation={0}
                 sx={{
-                    backgroundColor: theme.palette.background.main,
+                    backgroundColor: theme.palette.background.paper,
                     color: theme.palette.text.primary,
                     borderRadius: '0 0 24px 24px',
                     boxShadow: '0px 4px 20px rgba(0,0,0,0.05)',
@@ -171,11 +171,11 @@ export default function SharedNavbar() {
                 anchor="right"
                 open={openDrawer}
                 onClose={() => setOpenDrawer(false)}
-                mainProps={{
+                PaperProps={{
                     sx: {
                         width: '80%',
                         height: '100%',
-                        backgroundColor: theme.palette.background.main,
+                        backgroundColor: theme.palette.background.paper,
                         borderRadius: '16px 0 0 16px',
                     },
                 }}

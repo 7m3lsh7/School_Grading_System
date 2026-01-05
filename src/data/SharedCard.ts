@@ -16,4 +16,10 @@ export const cardsData: CardData[] = [
         title: "Students",
         description: "Manage student profiles",
     },
+    {
+        id: "2",
+        icon: UserIcon,
+        title: "Students",
+        description: "Manage student profiles",
+    },
 ];

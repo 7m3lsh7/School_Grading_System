@@ -32,9 +32,13 @@ const SharedCard: React.FC<SharedCardProps> = ({
                     outline: `2px solid ${theme.palette.primary.main}`,
                     transform: "translateY(-2px)",
                 },
-                [theme.breakpoints.down("md")]: {
-                    maxWidth: 400,
-                    height: 240,
+                [theme.breakpoints.up("lg")]: {
+                    maxWidth: 390,
+                    height: 220,
+                },
+                [theme.breakpoints.up("md")]: {
+                    maxWidth: 282,
+                    height: 195,
                 },
                 [theme.breakpoints.down("sm")]: {
                     maxWidth: "90vw",
