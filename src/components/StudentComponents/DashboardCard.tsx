@@ -1,17 +1,19 @@
-"use client";
+import React from "react";
+import { Card, CardContent, Typography, Box, Divider } from "@mui/material";
+import BookIcon from "@/icons/book.svg";
+import FileIcon from "@/icons/file.svg";
 
-import React, { ReactNode } from "react";
-import { Card, CardContent, Typography, Box } from "@mui/material";
-
+import Image from 'next/image';
+import { IconType } from "@/types/Icons";
 interface DashboardCardProps {
-  image: ReactNode; // دلوقتي ممكن تحطي JSX أو صورة مباشرة
+  icon: IconType;
   title: string;
   description: string;
   onClick: () => void;
 }
 
 function DashboardCard({
-  image,
+  icon: Icon,
   title,
   description,
   onClick,
@@ -21,72 +23,119 @@ function DashboardCard({
       onClick={onClick}
       tabIndex={0}
       sx={{
-        width: 320,
-        height: 150,
-        minWidth: 320,
-        minHeight: 150,
-        flexShrink: 0,
-        borderRadius: "16px",
+        width: "505px",
+        height: "270px",
+        borderRadius: "15px",
         cursor: "pointer",
-        transition: "all 0.3s ease",
-        bgcolor: "rgba(255, 255, 255, 0.95)",
-        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+        bgcolor: "rgba(255, 255, 255, 0.88)",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        p: 4,
         "&:hover": {
-          transform: "translateY(-8px)",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
-        },
-        "&:focus": {
           outline: "2px solid #FFC600",
-          outlineOffset: "2px",
-        },
+
+        }
       }}
     >
+
       <Box
         sx={{
-          width: "60px",
-          height: "62.5px",
-          bgcolor: "#FFC600",
-          borderRadius: "12px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          mb: 2.5,
-        }}
-      >
-        {image} 
+          width: "93.069%",
+          height: "55.556%",
+          margin: "auto"
+        }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+
+          }}>
+          <Box
+            sx={{
+              width: "60px",
+              height: "60px",
+              bgcolor: "#FFC600",
+              borderRadius: "15px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+
+            }}
+          >
+            <Icon width={40} height={40} />
+
+          </Box>
+          <Box
+            sx={{
+              marginLeft: "20px",
+            }}>
+            <Typography variant="body4">{title}</Typography>
+          </Box>
+        </Box>
+
+        <Divider sx={{ m:"20px 0"}} />
+
+        <Box
+          sx={{
+            marginLeft: "20px",
+            color: "#6B7280"
+          }}>
+          <Typography variant="h5">{description}</Typography>
+        </Box>
       </Box>
 
-      <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: 600,
-            color: "#1a1a1a",
-            mb: 1,
-            fontSize: "24px",
-          }}
-        >
-          {title}
-        </Typography>
-
-        <Typography
-          variant="body2"
-          sx={{
-            color: "#666",
-            fontSize: "15px",
-            lineHeight: 1.6,
-          }}
-        >
-          {description}
-        </Typography>
-      </CardContent>
     </Card>
   );
 }
 
-export default DashboardCard;
+export default function StudentDashboard() {
+  const handleCardClick = (route: string) => {
+
+  };
+
+  return (
+    <Box
+      sx={{
+        minHeight: "100vh",
+        backgroundImage: "url('/Images/image.jpeg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        p: 4,
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          gap: 4,
+          justifyContent: "center",
+          alignItems: "stretch",
+          flexWrap: "nowrap",
+        }}
+      >
+        <DashboardCard
+          icon={BookIcon}
+          title="Quarter Grades"
+          description="View your quarterly performance across all subjects"
+          onClick={() => handleCardClick('/quarter-grades')}
+        />
+
+        <DashboardCard
+          icon={FileIcon}
+          title="Final Grades"
+          description="View your semester final exam grades"
+          onClick={() => handleCardClick('/final-grades')}
+        />
+
+        <DashboardCard
+          icon={FileIcon}
+          title="Competencies Grades"
+          description="View your specialization competency grades"
+          onClick={() => handleCardClick('/competencies-grades')}
+        />
+      </Box>
+    </Box>
+  );
+}
