@@ -90,8 +90,7 @@ function DashboardCard({
 
 export default function StudentDashboard() {
   const handleCardClick = (route: string) => {
-    // Example: navigate(route);
-    console.log(`Navigating to: ${route}`);
+    
   };
 
   return (
