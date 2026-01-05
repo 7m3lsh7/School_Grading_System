@@ -1,157 +1,258 @@
 'use client';
-import { AppBar, Toolbar, Typography, Box, Stack, IconButton, Button, Avatar } from '@mui/material';
+
+import { useState } from 'react';
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    Box,
+    Stack,
+    IconButton,
+    Button,
+    Avatar,
+    Drawer,
+} from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LanguageIcon from '@mui/icons-material/Language';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import Image from 'next/image';
 
-export interface SharedNavbarProps {
-    /**
-     * Main title of the application (e.g. "School Grading System")
-     */
-    title?: string;
-    /**
-     * Subtitle of the application (e.g. "Student Portal")
-     */
-    subtitle?: string;
-    /**
-     * URL for the logo image
-     */
-    logoSrc?: string;
-    /**
-     * Content to render in the center (Navigation links)
-     */
-    centerContent?: ReactNode;
-    /**
-     * User profile element to render on the right
-     */
-    userProfile?: ReactNode;
-    /**
-     * Name of the user to display (default: "Someone").
-     */
-    userName?: string;
-    /**
-     * Role of the user (e.g. "Vice", "Teacher").
-     */
-    userRole?: string;
-    /**
-     * Path for logout redirection
-     */
-    logoutHref?: string;
-}
+import { navbarData } from '@/data/navbar';
 
-export default function SharedNavbar({
-    title = "School Grading System",
-    subtitle = "Someone Portal",
-    logoSrc = "/images/logoMain.png",
-    centerContent,
-    userProfile,
-    userName = "Someone",
-    userRole,
-    logoutHref = "/login"
-}: SharedNavbarProps) {
+const LOGO_SRC = '/images/login/logo.png';
+
+export default function SharedNavbar() {
+    const theme = useTheme();
+    const [openDrawer, setOpenDrawer] = useState(false);
+
+    const {
+        title,
+        subtitle,
+        centerLinks,
+        profileHref,
+        userName,
+        userRole,
+        logoutHref,
+    } = navbarData;
+
     return (
-        <AppBar
-            position="sticky"
-            sx={{
-                backgroundColor: '#fff',
-                color: '#000',
-                borderRadius: '0 0 24px 24px',
-                boxShadow: '0px 4px 20px rgba(0,0,0,0.05)',
-                px: 2,
-            }}
-            elevation={0}
-        >
-            <Toolbar sx={{ justifyContent: 'space-between', minHeight: '80px' }}>
+        <>
+            {/* ================= AppBar ================= */}
+            <AppBar
+                position="sticky"
+                elevation={0}
+                sx={{
+                    backgroundColor: theme.palette.background.paper,
+                    color: theme.palette.text.primary,
+                    borderRadius: '0 0 24px 24px',
+                    boxShadow: '0px 4px 20px rgba(0,0,0,0.05)',
+                    px: { xs: 0.6, md: 2 },
+                }}
+            >
+                <Toolbar
+                    sx={{
+                        justifyContent: 'space-between',
+                        minHeight: { xs: 64, md: 80 },
+                    }}
+                >
+                    {/* Left */}
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                        <Image
+                            src={LOGO_SRC}
+                            alt="Logo"
+                            width={50}
+                            height={40}
+                            priority
+                            style={{ objectFit: 'contain' }}
+                        />
 
-                {/* Left Section: Logo and Text */}
-                <Stack direction="row" alignItems="center" spacing={2}>
-                    <img
-                        src={logoSrc}
-                        alt="Logo"
-                        style={{ height: 40, objectFit: 'contain' }}
-                        onError={(e) => e.currentTarget.style.display = 'none'}
-                    />
-                    <Box>
-                        <Typography variant="subtitle1" sx={{ fontWeight: 'bold', lineHeight: 1.2 }}>
-                            {title}
-                        </Typography>
-                        {subtitle && (
-                            <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
-                                {subtitle}
-                            </Typography>
-                        )}
-                    </Box>
-                </Stack>
+                        <Box>
+                            <Typography variant="h4">{title}</Typography>
+                            {subtitle && (
+                                <Typography variant="h5" color="text.secondary" noWrap>
+                                    {subtitle}
+                                </Typography>
+                            )}
+                        </Box>
+                    </Stack>
 
-                {/* Center Section: Navigation Links used by the Consumer */}
-                <Stack direction="row" spacing={1}>
-                    {centerContent}
-                </Stack>
+                    {/* Center (Desktop only) */}
+                    <Stack
+                        direction="row"
+                        spacing={1}
+                        sx={{ display: { xs: 'none', md: 'flex' } }}
+                    >
+                        {centerLinks?.map((link) => (
+                            <Button
+                                key={link.label}
+                                component={Link}
+                                href={link.href}
+                                sx={{
+                                    textTransform: 'none',
+                                    color: theme.palette.text.primary,
+                                    px: 2,
+                                    '&:hover': {
+                                        color: theme.palette.primary.main,
+                                    },
+                                }}
+                            >
+                                <Typography variant="h4">
+                                    {link.label}
+                                </Typography>
+                            </Button>
+                        ))}
+                    </Stack>
 
-                {/* Right Section: User Profile, Notifications, Logout */}
-                <Stack direction="row" alignItems="center" spacing={2}>
+                    {/* Right */}
+                    <Stack direction="row" alignItems="center" spacing={1}>
 
-                    {/* User Profile: Custom or Default */}
-                    {userProfile ? (
-                        userProfile
-                    ) : (
+                        {/* User */}
                         <Button
-                            variant="contained"
+                            component={Link}
+                            href={profileHref}
                             sx={{
-                                backgroundColor: '#ffc107',
-                                color: '#000',
+                                backgroundColor: theme.palette.primary.main,
+                                color: theme.palette.primary.contrastText,
                                 textTransform: 'none',
                                 borderRadius: '15px',
                                 boxShadow: 'none',
-                                px: 2,
-                                py: 0.5,
-                                '&:hover': { backgroundColor: '#e0a800', boxShadow: 'none' }
+                                px: { xs: 1.2, md: 2 },
                             }}
-                            startIcon={<Avatar sx={{ width: 32, height: 32 }} />} // Can add userImage prop later if needed
                         >
-                            <Box textAlign="left" sx={{ ml: 1 }}>
-                                <Typography variant="body2" sx={{ fontWeight: '600', lineHeight: 1.2 }}>
-                                    {userName}
-                                </Typography>
-                                <Typography variant="caption" sx={{ fontSize: '0.75rem', opacity: 0.8, display: 'block' }}>
-                                    {userRole || 'Variable for role'}
+                            <Avatar sx={{ width: 32, height: 32 }} />
+                            <Box sx={{ ml: 1, display: { xs: 'none', sm: 'block' } }}>
+                                <Typography variant="body1">{userName}</Typography>
+                                <Typography variant="body2" sx={{ opacity: 0.8 }}>
+                                    {userRole}
                                 </Typography>
                             </Box>
                         </Button>
-                    )}
 
-                    {/* Standard Team Language Icon */}
-                    <IconButton
-                        size="medium"
-                        sx={{
-                            backgroundColor: '#ffc107',
-                            color: '#000',
-                            borderRadius: '12px',
-                            '&:hover': { backgroundColor: '#e0a800' }
-                        }}
-                    >
-                        <LanguageIcon />
+                            {/* Burger Menu (Mobile) */}
+                            <IconButton
+                                onClick={() => setOpenDrawer(true)}
+                                sx={{ display: { xs: 'flex', md: 'none' } }}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        {/* Icons (Desktop) */}
+                        <IconButton
+                            sx={{
+                                display: { xs: 'none', md: 'flex' },
+                                backgroundColor: theme.palette.primary.main,
+                                color: theme.palette.primary.contrastText,
+                                borderRadius: '12px',
+                            }}
+                        >
+                            <LanguageIcon />
+                        </IconButton>
+
+                        <IconButton
+                            component={Link}
+                            href={logoutHref}
+                            sx={{
+                                display: { xs: 'none', md: 'flex' },
+                                backgroundColor: theme.palette.error.main,
+                                color: theme.palette.error.light,
+                                borderRadius: '12px',
+                            }}
+                        >
+                            <LogoutIcon />
+                        </IconButton>
+                    </Stack>
+                </Toolbar>
+            </AppBar>
+
+            {/* ================= Mobile Drawer ================= */}
+            <Drawer
+                anchor="right"
+                open={openDrawer}
+                onClose={() => setOpenDrawer(false)}
+                PaperProps={{
+                    sx: {
+                        width: '80%',
+                        height: '100%',
+                        backgroundColor: theme.palette.background.paper,
+                        borderRadius: '16px 0 0 16px',
+                    },
+                }}
+            >
+                {/* Drawer Header */}
+                <Stack
+                    direction="row"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    px={2}
+                    py={2}
+                >
+                    <Typography variant="h4">Menu</Typography>
+                    <IconButton onClick={() => setOpenDrawer(false)}>
+                        <CloseIcon />
                     </IconButton>
-
-                    {/* Standard Team Logout Icon */}
-                    <IconButton
-                        size="medium"
-                        sx={{
-                            backgroundColor: '#ffebee',
-                            color: '#d32f2f',
-                            borderRadius: '12px',
-                            '&:hover': { backgroundColor: '#ffcdd2' }
-                        }}
-                        component={Link}
-                        href={logoutHref}
-                    >
-                        <LogoutIcon />
-                    </IconButton>
-
                 </Stack>
 
-            </Toolbar>
-        </AppBar>
+                {/* Links */}
+                <Stack spacing={1} px={2} mt={2}>
+                    {centerLinks?.map((link) => (
+                        <Button
+                            key={link.label}
+                            component={Link}
+                            href={link.href}
+                            onClick={() => setOpenDrawer(false)}
+                            sx={{
+                                justifyContent: 'flex-start',
+                                textTransform: 'none',
+                                color: theme.palette.text.primary,
+                                py: 1.5,
+                            }}
+                        >
+                            <Typography variant="body3">
+                                {link.label}
+                            </Typography>
+                        </Button>
+                    ))}
+                </Stack>
+
+                {/* Bottom Actions */}
+                <Box mt="auto" px={2} pb={3}>
+                    <Stack
+                        
+                        spacing={2}>
+                        <Button
+                            startIcon={<LanguageIcon />}
+                            sx={{
+                                backgroundColor: theme.palette.primary.main,
+                                color: theme.palette.text.primary,
+                                justifyContent: 'flex-start',
+                                textTransform: 'none',
+                                borderRadius: '12px',
+                                p:2
+                            }}
+                        >
+                            Language
+                        </Button>
+
+                        <Button
+                            component={Link}
+                            href={logoutHref}
+                            startIcon={<LogoutIcon />}
+                            sx={{
+                                justifyContent: 'flex-start',
+                                textTransform: 'none',
+                                color: theme.palette.error.light,
+                                backgroundColor: theme.palette.error.main,
+                                borderRadius: '12px',
+                                p: 2
+                            }}
+                        >
+                            Logout
+                        </Button>
+                    </Stack>  
+                </Box>
+            </Drawer>
+        </>
     );
 }

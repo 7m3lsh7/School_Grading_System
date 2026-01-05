@@ -8,7 +8,7 @@ export const palette: PaletteOptions = {
     secondary: { main: "#ffc600", contrastText: "#fff" },
 
     // Feedback colors
-    error: { main: "#f44336" },
+    error: { main: "rgba(191, 0, 0, 0.16)", light:"#D40000"},
     warning: { main: "#ff9800" },
     info: { main: "#2196f3" },
     success: { main: "#4caf50" },
@@ -24,6 +24,12 @@ export const palette: PaletteOptions = {
         primary: "#212121",
         secondary: "#757575",
     },
+    
+    divider: "#e0e0e0",
 
+    action: {
+        hover: "#ffcdd2",
+        
+    },
 
 };
