@@ -17,6 +17,7 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 
 import { teacherProfileData } from "@/data/profile";
 import { ProfileData } from "@/types/profile";
+import SharedNavbar from "@/components/layout/SharedNavbar";
 
 const TeacherProfilePage = () => {
     const theme = useTheme();
@@ -25,6 +26,8 @@ const TeacherProfilePage = () => {
     const profile: ProfileData = teacherProfileData;
 
     return (
+        <>
+        <SharedNavbar/>
         <Box
             sx={{
                 minHeight: "100vh",
@@ -109,7 +112,8 @@ const TeacherProfilePage = () => {
                 onClose={() => setOpen(false)}
                 username={profile.username}
             />
-        </Box>
+            </Box>
+        </>
     );
 };
 
@@ -172,7 +176,9 @@ const EditProfileDialog = ({
                 </Button>
             </DialogContent>
         </Dialog>
-    );
+            );
+        
+        
 };
 
 /* ================= Info Item ================= */
