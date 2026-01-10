@@ -131,13 +131,13 @@ export default function SharedNavbar() {
                             </Box>
                         </Button>
 
-                            {/* Burger Menu (Mobile) */}
-                            <IconButton
-                                onClick={() => setOpenDrawer(true)}
-                                sx={{ display: { xs: 'flex', md: 'none' } }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
+                        {/* Burger Menu (Mobile) */}
+                        <IconButton
+                            onClick={() => setOpenDrawer(true)}
+                            sx={{ display: { xs: 'flex', md: 'none' } }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
                         {/* Icons (Desktop) */}
                         <IconButton
                             sx={{
@@ -219,7 +219,7 @@ export default function SharedNavbar() {
                 {/* Bottom Actions */}
                 <Box mt="auto" px={2} pb={3}>
                     <Stack
-                        
+
                         spacing={2}>
                         <Button
                             startIcon={<LanguageIcon />}
@@ -229,7 +229,7 @@ export default function SharedNavbar() {
                                 justifyContent: 'flex-start',
                                 textTransform: 'none',
                                 borderRadius: '12px',
-                                p:2
+                                p: 2
                             }}
                         >
                             Language
@@ -250,7 +250,7 @@ export default function SharedNavbar() {
                         >
                             Logout
                         </Button>
-                    </Stack>  
+                    </Stack>
                 </Box>
             </Drawer>
         </>
