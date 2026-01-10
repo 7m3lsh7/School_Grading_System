@@ -3,4 +3,5 @@ export type CardData = {
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
     title: string;
     description: string;
+    extraText?: string; 
 };
