@@ -220,7 +220,7 @@ export default function ViceGradesDashboard() {
                     <Stack direction="row" spacing={2} justifyContent="center">
                         <Button
                             component={Link}
-                            href="/vice/grades/final/semester1"
+                            href="/vice/grades/final?semester=1"
                             variant="contained"
                             startIcon={<AssignmentTurnedInIcon />}
                             sx={{
@@ -240,7 +240,7 @@ export default function ViceGradesDashboard() {
                         </Button>
                         <Button
                             component={Link}
-                            href="/vice/grades/final/semester2"
+                            href="/vice/grades/final?semester=2"
                             variant="contained"
                             startIcon={<AssignmentTurnedInIcon />}
                             sx={{
