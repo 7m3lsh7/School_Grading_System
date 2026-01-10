@@ -28,7 +28,7 @@ export default function ViceDashboard() {
 
     return (
         <Box sx={{ position: 'relative', minHeight: '100vh', backgroundColor: '#f9f9f9' }}>
-            {/* Full Page Background - Restored as Exception */}
+            {/* Full Page Background */}
             <Box
                 sx={{
                     position: 'fixed',
@@ -60,7 +60,6 @@ export default function ViceDashboard() {
                         <Stack spacing={2} sx={{
                             mb: 6,
                             textAlign: 'left',
-                            // Removed background image from here
                             borderRadius: '16px',
                             position: 'relative',
                         }}>
@@ -73,7 +72,7 @@ export default function ViceDashboard() {
                                     Administrator Portal
                                 </Typography>
                                 <Typography variant="body1" sx={{ maxWidth: '600px', opacity: 0.8, color: '#e0e0e0', mb: 3 }}>
-                                    Review, Approve grades,and manage student grades access
+                                    Review, Approve grades, and manage student grades access
                                 </Typography>
                             </Box>
                         </Stack>

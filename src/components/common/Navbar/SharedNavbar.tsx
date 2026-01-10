@@ -150,7 +150,6 @@ export default function SharedNavbar({
                     </IconButton>
 
                 </Stack>
-
             </Toolbar>
         </AppBar>
     );

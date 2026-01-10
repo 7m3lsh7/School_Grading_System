@@ -4,8 +4,12 @@ import React from 'react';
 import { Box, Container, Typography, Stack, Button, Card, MenuItem, Select, FormControl, InputLabel, TextField, RadioGroup, FormControlLabel, Radio, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, Paper } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Link from 'next/link';
+import { useState } from 'react';
+import AddStudentModal from '@/src/components/vice/students/AddStudentModal';
 
 export default function ViceStudentsPage() {
+    const [isAddStudentModalOpen, setIsAddStudentModalOpen] = useState(false);
+
     return (
         // Main Content Card
         <Box sx={{ position: 'relative', minHeight: '100vh', paddingBottom: 4 }}>
@@ -155,6 +159,7 @@ export default function ViceStudentsPage() {
                                             <Button
                                                 variant="contained"
                                                 startIcon={<AddIcon />}
+                                                onClick={() => setIsAddStudentModalOpen(true)}
                                                 sx={{
                                                     backgroundColor: '#ffc107',
                                                     color: '#000',
@@ -221,6 +226,7 @@ export default function ViceStudentsPage() {
                                             <Box sx={{ display: 'flex', gap: 2 }}>
                                                 <Button
                                                     variant="contained"
+                                                    onClick={() => setIsAddStudentModalOpen(true)}
                                                     sx={{
                                                         backgroundColor: '#ffc107', color: '#000', fontWeight: 'bold', '&:hover': { backgroundColor: '#ffca2c' }
                                                     }}
@@ -244,6 +250,11 @@ export default function ViceStudentsPage() {
                     </Box>
                 </Container>
             </Box >
+
+            <AddStudentModal
+                open={isAddStudentModalOpen}
+                onClose={() => setIsAddStudentModalOpen(false)}
+            />
         </Box >
     );
 }

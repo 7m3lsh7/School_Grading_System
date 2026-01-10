@@ -17,7 +17,7 @@ export default function AllStudentsPage() {
     const [departmentFilter, setDepartmentFilter] = useState('om');
     const [levelFilter, setLevelFilter] = useState('junior');
 
- 
+
     return (
         <Box sx={{ position: 'relative', minHeight: '100vh' }}>
             {/* Full Page Background */}
@@ -28,7 +28,7 @@ export default function AllStudentsPage() {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundImage: 'url(/images/background2.png)',
+                    backgroundImage: 'url(/images/background1.png)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     zIndex: -1,
