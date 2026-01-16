@@ -45,7 +45,7 @@ export default function SharedNavbar() {
                 position="sticky"
                 elevation={0}
                 sx={{
-                    backgroundColor: theme.palette.background.paper,
+                    backgroundColor: theme.palette.background.main,
                     color: theme.palette.text.primary,
                     borderRadius: '0 0 24px 24px',
                     boxShadow: '0px 4px 20px rgba(0,0,0,0.05)',
@@ -131,13 +131,13 @@ export default function SharedNavbar() {
                             </Box>
                         </Button>
 
-                            {/* Burger Menu (Mobile) */}
-                            <IconButton
-                                onClick={() => setOpenDrawer(true)}
-                                sx={{ display: { xs: 'flex', md: 'none' } }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
+                        {/* Burger Menu (Mobile) */}
+                        <IconButton
+                            onClick={() => setOpenDrawer(true)}
+                            sx={{ display: { xs: 'flex', md: 'none' } }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
                         {/* Icons (Desktop) */}
                         <IconButton
                             sx={{
@@ -171,11 +171,11 @@ export default function SharedNavbar() {
                 anchor="right"
                 open={openDrawer}
                 onClose={() => setOpenDrawer(false)}
-                PaperProps={{
+                mainProps={{
                     sx: {
                         width: '80%',
                         height: '100%',
-                        backgroundColor: theme.palette.background.paper,
+                        backgroundColor: theme.palette.background.main,
                         borderRadius: '16px 0 0 16px',
                     },
                 }}
@@ -219,7 +219,7 @@ export default function SharedNavbar() {
                 {/* Bottom Actions */}
                 <Box mt="auto" px={2} pb={3}>
                     <Stack
-                        
+
                         spacing={2}>
                         <Button
                             startIcon={<LanguageIcon />}
@@ -229,7 +229,7 @@ export default function SharedNavbar() {
                                 justifyContent: 'flex-start',
                                 textTransform: 'none',
                                 borderRadius: '12px',
-                                p:2
+                                p: 2
                             }}
                         >
                             Language
@@ -250,7 +250,7 @@ export default function SharedNavbar() {
                         >
                             Logout
                         </Button>
-                    </Stack>  
+                    </Stack>
                 </Box>
             </Drawer>
         </>
