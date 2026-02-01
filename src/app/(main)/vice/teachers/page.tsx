@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Container, Typography, Stack, Button, Card, MenuItem, Select, FormControl, InputLabel, IconButton, Dialog, DialogTitle, DialogContent, TextField, RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import { Box, Container, Typography, Stack, Button, Card, MenuItem, Select, FormControl, InputLabel, IconButton, Dialog, DialogTitle, DialogContent, TextField, RadioGroup, FormControlLabel, Radio, Divider } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -40,32 +40,32 @@ export default function ViceTeachersPage() {
                         </Button>
                     </Box>
 
-                    {/* Main Content Card - Dark Glassy/Solid Background */}
+                    {/* Main Content Area - No wrapper background */}
                     <Box
                         sx={{
-                            backgroundColor: 'rgba(0, 0, 0, 0.8)', // Darker background for the form area as per design
-                            borderRadius: '24px',
-                            p: { xs: 3, md: 6 },
+                            py: 2,
                             color: '#fff',
                         }}
                     >
                         <Stack spacing={4}>
 
                             {/* Step 1: Select Teacher */}
-                            <Card sx={{ p: 3, borderRadius: '16px', backgroundColor: '#fff' }}>
+                            <Card sx={{ py: 3, px: 4, borderRadius: '16px', backgroundColor: '#fff' }}>
                                 <Stack spacing={2}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                                         <Box sx={{
-                                            width: 32, height: 32,
+                                            width: 28, height: 28,
                                             backgroundColor: '#ffc107',
-                                            borderRadius: '8px',
+                                            borderRadius: '4px',
                                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                            fontWeight: 'bold', color: '#000'
+                                            fontWeight: 700, fontSize: '14px', color: '#fff'
                                         }}>
                                             1
                                         </Box>
-                                        <Typography variant="h6" fontWeight="bold">Select Teacher</Typography>
+                                        <Typography sx={{ fontSize: '16px', fontWeight: 600 }}>Select Teacher</Typography>
                                     </Box>
+
+                                    <Divider sx={{ my: 1 }} />
 
                                     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                                         <FormControl fullWidth size="small" sx={{ maxWidth: 300 }}>
@@ -82,6 +82,10 @@ export default function ViceTeachersPage() {
                                             sx={{
                                                 backgroundColor: '#ffc107',
                                                 color: '#000',
+                                                fontSize: '13px',
+                                                fontWeight: 600,
+                                                textTransform: 'none',
+                                                borderRadius: '8px',
                                                 '&:hover': { backgroundColor: '#ffca2c' }
                                             }}
                                         >
@@ -92,20 +96,22 @@ export default function ViceTeachersPage() {
                             </Card>
 
                             {/* Step 2: Subject Assignment */}
-                            <Card sx={{ p: 3, borderRadius: '16px', backgroundColor: '#fff' }}>
+                            <Card sx={{ py: 3, px: 4, borderRadius: '16px', backgroundColor: '#fff' }}>
                                 <Stack spacing={2}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                                         <Box sx={{
-                                            width: 32, height: 32,
+                                            width: 28, height: 28,
                                             backgroundColor: '#ffc107',
-                                            borderRadius: '8px',
+                                            borderRadius: '4px',
                                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                            fontWeight: 'bold', color: '#000'
+                                            fontWeight: 700, fontSize: '14px', color: '#fff'
                                         }}>
                                             2
                                         </Box>
-                                        <Typography variant="h6" fontWeight="bold">Subject Assignment</Typography>
+                                        <Typography sx={{ fontSize: '16px', fontWeight: 600 }}>Subject Assignment</Typography>
                                     </Box>
+
+                                    <Divider sx={{ my: 1 }} />
 
                                     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                                         <FormControl fullWidth size="small" sx={{ maxWidth: 200 }}>
@@ -126,6 +132,7 @@ export default function ViceTeachersPage() {
                                             sx={{
                                                 backgroundColor: '#ffc107',
                                                 color: '#000',
+                                                borderRadius: '4px',
                                                 '&:hover': { backgroundColor: '#ffca2c' }
                                             }}
                                         >
@@ -136,33 +143,35 @@ export default function ViceTeachersPage() {
                             </Card>
 
                             {/* Step 3: Assign Classes */}
-                            <Card sx={{ p: 3, borderRadius: '16px', backgroundColor: '#fff' }}>
+                            <Card sx={{ py: 3, px: 4, borderRadius: '16px', backgroundColor: '#fff' }}>
                                 <Stack spacing={2}>
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                                         <Box sx={{
-                                            width: 32, height: 32,
+                                            width: 28, height: 28,
                                             backgroundColor: '#ffc107',
-                                            borderRadius: '8px',
+                                            borderRadius: '4px',
                                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                            fontWeight: 'bold', color: '#000'
+                                            fontWeight: 700, fontSize: '14px', color: '#fff'
                                         }}>
                                             3
                                         </Box>
-                                        <Typography variant="h6" fontWeight="bold">Assign Classes</Typography>
+                                        <Typography sx={{ fontSize: '16px', fontWeight: 600 }}>Assign Classes</Typography>
                                     </Box>
+
+                                    <Divider sx={{ my: 1 }} />
 
                                     <Box sx={{ display: 'flex', gap: 2 }}>
                                         {['J1', 'J2', 'J3'].map((cls) => (
                                             <Box
                                                 key={cls}
                                                 sx={{
-                                                    width: 40, height: 40,
-                                                    borderRadius: '50%',
+                                                    width: 36, height: 36,
+                                                    borderRadius: '4px',
                                                     backgroundColor: '#ffc107',
                                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                                    fontWeight: 'bold', color: '#000',
+                                                    fontWeight: 700, fontSize: '13px', color: '#000',
                                                     cursor: 'pointer',
-                                                    '&:hover': { transform: 'scale(1.1)' },
+                                                    '&:hover': { transform: 'scale(1.05)' },
                                                     transition: '0.2s'
                                                 }}
                                             >
