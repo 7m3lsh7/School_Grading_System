@@ -6,7 +6,6 @@ export const adminLevels: AdminLevel[] = [
     title: 'Junior',
     subject: 'Mathematics',
     description: 'Manage quarter grades for junior student',
-    code: 'J1 & J3',
     href: '/admin/junior',
   },
   {
@@ -14,7 +13,6 @@ export const adminLevels: AdminLevel[] = [
     title: 'Wheeler',
     subject: 'Mathematics',
     description: 'Manage quarter grades for wheeler student',
-    code: 'W1 & W2',
     href: '/admin/wheeler',
   },
   {
@@ -22,7 +20,6 @@ export const adminLevels: AdminLevel[] = [
     title: 'Senior',
     subject: 'Mathematics',
     description: 'Manage quarter grades for senior student',
-    code: 'S1 & S2',
     href: '/admin/senior',
   },
 ];

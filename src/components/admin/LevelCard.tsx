@@ -77,20 +77,7 @@ const LevelCard: React.FC<LevelCardProps> = ({
         {description}
       </Typography>
 
-      <Divider sx={{ my: 2.5 }} />
-
-      {/* Code */}
-      {code && (
-        <Typography
-          variant="body2"
-          sx={{
-            color: '#666',
-            fontWeight: 500,
-          }}
-        >
-          {code}
-        </Typography>
-      )}
+      
     </Paper>
   );
 };

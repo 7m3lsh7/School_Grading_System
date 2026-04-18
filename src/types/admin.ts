@@ -4,5 +4,5 @@ export interface AdminLevel {
   description: string;
   href: string;
   subject?: string;
-  code?: string;
+
 }
